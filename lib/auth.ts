@@ -31,7 +31,7 @@ export const authConfig = {
             return newSession!;
         },
         async jwt({ token, account, profile }: any) {
-            const user = await db.user.findFirst({
+            const user = await db.db1.user.findFirst({
                 where: {
                     sub: account?.providerAccountId ?? ""
                 }
@@ -48,7 +48,7 @@ export const authConfig = {
                     return false
                 }
 
-                const userDb = await db.user.findFirst({
+                const userDb = await db.db1.user.findFirst({
                     where: {
                         username: email
                     }
@@ -62,7 +62,7 @@ export const authConfig = {
                 const publicKey = keypair.publicKey.toBase58();
                 const privateKey = keypair.secretKey;
 
-                await db.user.create({
+                await db.db1.user.create({
                     data: {
                         username: email,
                         name: profile?.name,

@@ -1,7 +1,14 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient as PrismaClient1 } from '@/prisma/generated/client1'
+import { PrismaClient as PrismaClient2 } from '@/prisma/generated/client2'
+
+const client1 = new PrismaClient1()
+const client2 = new PrismaClient2()
 
 const prismaClientSingleton = () => {
-    return new PrismaClient();
+    return {
+        db1: new PrismaClient1(),
+        db2: new PrismaClient2()
+    };
 };
 
 type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;

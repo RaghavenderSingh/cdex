@@ -1,0 +1,31 @@
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE2_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client2"
+}
+
+model User {
+  id              String    @id  @default(uuid())  
+  username        String
+  sub             String    @default("")
+  name            String?
+  profilePicture  String?
+  password        String?
+  solWalletId     String?
+  solWallet       SolWallet?
+}
+model SolWallet {
+  id        String   @id @default(uuid())
+  publicKey String
+  privateKey String
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+enum Provider {
+  Google
+}

@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
             status: 401
         })
     }
-    const solWallet = await db.solWallet.findFirst({
+    const solWallet = await db.db1.solWallet.findFirst({
         where: { userId: session.user.uid }
     })
     console.log("solWallet", solWallet)
