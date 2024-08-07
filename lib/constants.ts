@@ -1,4 +1,4 @@
-import { Connection } from "@solana/web3.js"
+import { clusterApiUrl, Connection } from "@solana/web3.js"
 import axios from "axios";
 import { SUPPORTED_TOKENS } from "./tokens";
 
@@ -16,7 +16,7 @@ let prices: {
 
 
 
-export const connection = new Connection("https://solana-mainnet.g.alchemy.com/v2/EspGgEsKtp6xdG1-P32lj9raEFUlgXNc")
+export const connection = new Connection(clusterApiUrl("devnet"))
 
 export async function getSupportedTokens() {
     try {

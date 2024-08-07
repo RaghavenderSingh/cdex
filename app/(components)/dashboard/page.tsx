@@ -2,6 +2,7 @@ import { ProfileCard } from "@/components/ProfileCard";
 import db from "@/app/db";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/lib/auth";
+import { ContentLayout } from "@/components/admin-panel/content-layout";
 
 async function getUserWallet() {
   const session = await getServerSession(authConfig);
@@ -26,7 +27,9 @@ export default async function () {
   }
   return (
     <div>
-      <ProfileCard publicKey={userWallet.userWallet?.publicKey ?? ""} />
+      <ContentLayout title="Dashboard">
+        <ProfileCard publicKey={userWallet.userWallet?.publicKey ?? ""} />
+      </ContentLayout>
     </div>
   );
 }
